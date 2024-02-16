@@ -1,0 +1,7 @@
+com\microservices\enteringdata\ErrorController.class
+com\microservices\enteringdata\InsertingValuesController.class
+com\microservices\enteringdata\EnteringDataApplication.class
+com\microservices\enteringdata\LoginController.class
+com\microservices\enteringdata\Numbers.class
+com\microservices\enteringdata\User.class
+com\microservices\enteringdata\LogoutController.class

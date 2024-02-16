@@ -1,0 +1,7 @@
+com\microservices\analyser\NumbersData.class
+com\microservices\analyser\ConnectionException.class
+com\microservices\analyser\AnalyserApplication.class
+com\microservices\analyser\Numbers.class
+com\microservices\analyser\Analyser.class
+com\microservices\analyser\AnalyserManager.class
+com\microservices\analyser\NumbersStatistics.class

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert Number</title>
+</head>
+<body>
+<lable align="right"><a href="/logout">Logout</a></lable>
+<form align="center" action="#" th:action="@{/insertNumbers}" th:object="${number}" method="post">
+    <p>number: <input type="number" th:field="*{number}" required="required"/></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+</body>
+</html>
