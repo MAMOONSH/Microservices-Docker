@@ -1,0 +1,6 @@
+
+CREATE TABLE numbers (
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  number INTEGER,
+  PRIMARY KEY (id)
+);

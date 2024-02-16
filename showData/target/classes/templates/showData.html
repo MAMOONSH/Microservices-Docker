@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Data</title>
+</head>
+<body align="center" onload = "JavaScript:AutoRefresh(5000);">
+<lable align="right"><a href="/logout">Logout</a></lable>
+    <h1>Result</h1><br>
+    <h2>Average</h2>
+    <h2 th:text="${data.average}"></h2><br>
+    <h2>Median</h2>
+    <h2 th:text="${data.median}"></h2><br>
+    <h2>Max</h2>
+    <h2 th:text="${data.max}"></h2><br>
+    <h2>Min</h2>
+    <h2 th:text="${data.min}"></h2><br>
+    <h3>In case no data entered the result is zero for all data</h3><br>
+</body>
+<script type = "text/JavaScript">
+    <!--
+    function AutoRefresh( t ) {
+        setTimeout("location.reload(true);", t);
+    }
+    //-->
+</script>
+</html>

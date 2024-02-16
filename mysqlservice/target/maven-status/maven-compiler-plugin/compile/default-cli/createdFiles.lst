@@ -1,0 +1,5 @@
+com\microservices\mysqlservice\NumbersNotFoundException.class
+com\microservices\mysqlservice\Numbers.class
+com\microservices\mysqlservice\MysqlserviceApplication.class
+com\microservices\mysqlservice\NumbersResources.class
+com\microservices\mysqlservice\NumbersRepository.class

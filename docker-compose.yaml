@@ -1,0 +1,105 @@
+version: "3.9"
+services:    
+    mongoService:
+      container_name: "MongoService"
+      image: mamoonsh/mongo-service
+      depends_on:
+        - mongodb
+      environment:
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: example
+      networks:
+        - backend
+      
+    mongodb:
+      container_name: "Mongo"
+      image: mongo
+      expose:
+        - 27017
+      restart: always
+      volumes:
+        - mongo-data:/data
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: example
+      networks:
+        - backend
+    mysqlService:
+      container_name: "MySQLService"
+      depends_on: 
+       - mysqlDB
+      image: mamoonsh/mysql-service
+      restart: always
+      environment:
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysqlDB:3306/numbers?autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: 1234
+      networks:
+        - backend
+
+    mysqlDB:
+        container_name: "MySQL"
+        image: mysql:8.0.28
+        environment:
+          - MYSQL_DATABASE=numbers
+          - MYSQL_ROOT_PASSWORD=1234
+        expose:
+          - 3306
+        restart: always
+        volumes:
+          - mysql-data:/var/lib/mysql
+        networks:
+        - backend
+
+    authentication:
+      container_name: "Authentication"
+      image:  mamoonsh/authentication-service
+      restart: always
+      networks:
+        - backend
+
+    analyser:
+      container_name: "Analyser"
+      depends_on:
+        - mysqlService
+        - mongoService
+      image: mamoonsh/analyser-service
+      restart: always
+      networks:
+        - backend
+
+    enterData:
+      container_name: "EnterDataWebapp"
+      depends_on:
+        - authentication
+        - analyser
+      image: mamoonsh/enter-data-webapp
+      ports:
+        - 8080:8080
+      restart: always
+      networks:
+        - backend
+        - frontend
+
+    showData:
+      container_name: "ShowDataWebapp"
+      depends_on:
+        - authentication
+        - analyser
+      image: mamoonsh/show-data-webapp
+      ports:
+        - 9080:8081
+      restart: always
+      networks:
+        - backend
+        - frontend
+      
+    
+volumes:
+  mongo-data:
+  mysql-data:
+networks:
+  frontend:
+    name: frontend
+  backend:
+    name: backend
